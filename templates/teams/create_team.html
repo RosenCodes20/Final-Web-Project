@@ -21,6 +21,7 @@
   <a href="#" class="ball-link-a"><img class="ball-link" src="/static/images/ball.png" alt=""></a>
   <a href="#" class="create-team">Create Team</a>
   <a href="#" class="create-player">Create Player</a>
+  <a href="#" class="create-league">Create League</a>
   <a href="#" class="login">Login</a>
   <a href="#" class="logout">Logout</a>
   <a href="#" class="register">Register</a>
@@ -38,7 +39,11 @@
 
       <div class="form-group">
         <label for="team_league">Team League:</label>
-        <input type="text" name="team_name" id="team_league" required>
+        <select name="team_league" id="team_league">
+          <option>Premier League</option>
+          <option>La League</option>
+          <option>Eredivision</option>
+        </select>
       </div>
 
       <a href="#"><button><i class="fa-solid fa-check"></i>Create Team</button></a>

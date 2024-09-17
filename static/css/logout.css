@@ -64,73 +64,58 @@ h1 {
     font-size: 1.2rem;
 }
 
-.players-container {
-    border: 1px solid black;
-    background-color: #f2f2f2;
-    width: 600px;
-    margin: 60px auto;
-    border-radius: 8px;
-    padding: 20px;
+.logout-nav-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    margin-top: 10rem;
 }
 
-.player-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-    padding: 15px;
-    transition: transform 0.2s ease;
-    animation: shine 3s linear infinite;
-    overflow: hidden;
-    background: linear-gradient(to right, #fff 20%, #fff 40%, #ECD08C 50%, #ECD08C 55%, #fff 70%, #fff 100%);
+.logout-nav-menu h1 {
+    color: white;
+    font-size: 3rem;
 }
 
-.players-container img {
-    width: 100px;
-    display: block;
-    margin: 0 auto;
+.logout-nav-menu .btn-group {
+    display: flex;
+    gap: 20px;
 }
 
-.players-container:hover {
-    transform: scale(1.05);
-}
-
-.player-card img {
-    width: 100px;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-.player-card p {
-    font-family: Arial, sans-serif;
-    font-size: 18px;
-}
-
-
-.players-container .player-card .btn-group button {
+.logout-nav-menu .btn-group button {
     border-radius: 14px;
     color: white;
     padding: 8px 13px;
-    font-size: 16px;
+    font-size: 1.5rem;
+    margin: 0;
 }
 
-.players-container .player-card .btn-group .edit {
-    border: 2px solid #3A8ABE;
-    background-color: #3A8ABE;
+.logout-nav-menu .btn-group .yes-btn {
+    border: 2px solid #14A021;
+    background-color: #14A021;
 }
 
-.players-container .player-card .btn-group .delete {
-    border: 2px solid #DE4B39;
-    background-color: #DE4B39;
-    margin-left: 12px;
+.logout-nav-menu .btn-group .no-btn {
+    border: 2px solid #E91705;
+    background-color: #E91705;
 }
 
-.players-container .player-card .btn-group button:hover {
+.logout-nav-menu .btn-group button:hover {
     cursor: pointer;
-    opacity: 0.6;
     border-radius: 14px;
 }
 
-.players-container .player-card .btn-group i {
+.logout-nav-menu .btn-group .yes-btn:hover{
+    border: 2px solid green;
+    background-color: lightgreen;
+}
+
+.logout-nav-menu .btn-group .no-btn:hover{
+    border: 2px solid red;
+    background-color: lightcoral;
+}
+
+.logout-nav-menu .btn-group i {
     padding-right: 5px;
 }

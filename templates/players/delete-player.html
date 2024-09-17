@@ -31,34 +31,33 @@
 
 <div class="player-form">
 
-  <h2>Create Player</h2>
+  <h2>Delete Player</h2>
   <form>
     <div class="form-group">
       <label for="name">Player Name:</label>
-      <input type="text" name="name" id="name" required>
+      <input type="text" value="Eden Hazard" name="name" id="name" required disabled>
     </div>
 
     <div class="form-group">
       <label for="age">Player Age:</label>
-      <input type="number" name="age" id="age" required>
+      <input type="number" value="32" name="age" id="age" required disabled>
     </div>
 
     <div class="form-group">
       <label for="price">Player Price:</label>
-      <input type="number" name="price" id="price" required>
+      <input type="number" value=200000 name="price" id="price" required disabled>
     </div>
 
     <div class="form-group">
       <label for="club">Player Club:</label>
-      <select name="club" id="club">
+      <select name="club" id="club" disabled>
         <option>Manchester United</option>
         <option>Chelsea</option>
         <option>Liverpool</option>
       </select>
     </div>
 
-
-    <a href="#"><button><i class="fa-solid fa-check"></i>Create Player</button></a>
+    <a href="#"><button class="delete-btn"><i class="fa-solid fa-trash"></i>Delete Player</button></a>
   </form>
 
 </div>

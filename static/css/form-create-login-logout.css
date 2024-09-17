@@ -140,3 +140,43 @@ h1 {
     background-color: #3A8ABE;
     border: 2px solid #3A8ABE;
 }
+
+.player-form .delete-btn {
+    border: 2px solid #DE4B39;
+    background-color: #DE4B39;
+}
+
+.player-form .delete-btn:hover {
+    cursor: pointer;
+    opacity: 0.6;
+    border-radius: 14px;
+    border: 2px solid #DE4B39;
+    background-color: #DE4B39;
+}
+
+.player-form .login-btn {
+    border: 2px solid #5F69FB;
+    background-color: #5F69FB;
+}
+
+.player-form .login-btn:hover {
+    cursor: pointer;
+    opacity: 0.6;
+    border-radius: 14px;
+    background-color: #5F69FB;
+    border: 2px solid #5F69FB;
+}
+
+.player-form .register-btn {
+    border: 2px solid #268A1A;
+    background-color: #268A1A;
+}
+
+.player-form .login-btn:hover {
+    cursor: pointer;
+    opacity: 0.6;
+    border-radius: 14px;
+    background-color: #268A1A;
+    border: 2px solid #268A1A;
+}
+
