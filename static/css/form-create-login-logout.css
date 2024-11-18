@@ -40,7 +40,7 @@ form input, select{
     box-sizing: border-box;
 }
 
-form button {
+.player-form form button {
     width: 100%;
     border: 2px solid green;
     border-radius: 14px;
@@ -51,14 +51,14 @@ form button {
     margin-top: 10px;
 }
 
-form button:hover {
+.player-form form button:hover {
     cursor: pointer;
     background-color: lightgreen;
     border: 2px solid lightgreen;
     border-radius: 14px;
 }
 
-form button i {
+.player-form  form button i {
     padding-right: 5px;
 }
 
@@ -112,4 +112,12 @@ form .register-btn:hover {
     border-radius: 14px;
     background-color: #268A1A;
     border: 2px solid #268A1A;
+}
+
+.register-div {
+    text-align: center;
+}
+
+.login-div {
+    text-align: center;
 }

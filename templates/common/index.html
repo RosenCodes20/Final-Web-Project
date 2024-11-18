@@ -1,19 +1,56 @@
 {% extends "common/base.html" %}
 {% load get_players %}
 {% block content %}
+    
+    <div class="search-form">
+        <form method="get">
+            
+            {{ player_search_form }}
+            <button class="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            
+        </form>
+    </div>
+    
     <div class="players-containers">
-    {% get_players as players %}
+    
       {% for player in players %}  
+          
       <div class="player-cards">
+      
         <img src="{{ player.image_url }}" alt="Eden Hazard">
         <p>Name: {{ player.name|truncatechars:10|capfirst }}</p>
         <p>Age: {{ player.age }}</p>
         <p>Price: {{ player.price|join:' ' }}$</p>
         <a href="{% url 'player-details' player.pk %}" class="btn-groups"><button><i class="fa-solid fa-circle-info"></i>Details</button></a>
+      
       </div>
+          
       {% empty %}    
           <h1 class="no-players-text">No players here! :(</h1>    
     {% endfor %}
           
     </div>
+    
+    <div class="pagination">
+    
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+    <span class="current">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+    
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo ;</a>
+    {% endif %}
+    
+    </span>
+    </div>
+    
 {% endblock %}

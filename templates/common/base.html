@@ -1,6 +1,7 @@
 {% load static %}
 {% load get_leagues %}
 {% load get_teams %}
+{% load get_scheme %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +9,7 @@
     <meta charset="UTF-8">
     <title>Football Team Manager</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" type="image/x-icon" href="https://pngimg.com/d/football_PNG52775.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
@@ -23,7 +25,11 @@
     <div class="links">
 
         <a href="{% url "index" %}" class="ball-link-a"><img class="ball-link" src="/static/images/ball.png" alt=""></a>
-            <a href="{% url 'create-league' %}" class="create-league">Create League</a>
+            {% get_scheme as scheme %}
+            {% if scheme %}
+                <a href="{% url 'create-league' %}" class="create-league">Create League</a>
+            {% endif %}
+    
             {% get_leagues as leagues %}
             {% if leagues %}
                 <a href="{% url 'create-team' %}" class="create-team">Create Team</a>
@@ -34,14 +40,22 @@
                 <a href="{% url 'create-player' %}" class="create-player">Create Player</a> 
             {% endif %}
             
+            {% get_scheme as scheme %}
+                {% if not scheme %}
+                    <a href="{% url 'create-scheme' %}">Create Scheme</a>  
+                {% else %}
+                    <a href="{% url 'scheme-details' %}">Scheme Details</a>  
+                    
+                {% endif %}
+    
             {% if not request.user.is_authenticated %}
             <a href="{% url 'login' %}" class="login">Login</a>
             <a href="{% url 'register' %}" class="register">Register</a>
             
             {% else %}
             <a href="{% url 'logout' %}" class="logout">Logout</a>
-            <a href="{% url 'profile-details' %}" class="profile-details">Profile</a>
-            
+            <a href="{% url 'profile-details' request.user.pk %}" class="profile-details">Profile</a>
+                
             {% endif %}
       
     </div>

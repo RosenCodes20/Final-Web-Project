@@ -4,17 +4,24 @@
 <div class="container">
 
   <div class="cont-img">
-  <img src="https://w7.pngwing.com/pngs/184/113/png-transparent-user-profile-computer-icons-profile-heroes-black-silhouette-thumbnail.png" alt="Profile picture">
+   {% if not user.profile.profile_picture %}   
+      <img src="https://w7.pngwing.com/pngs/184/113/png-transparent-user-profile-computer-icons-profile-heroes-black-silhouette-thumbnail.png" alt="Profile picture">
+   {% else %}
+      <img src="{{ user.profile.profile_picture }}">
+   
+   {% endif %}   
   </div>
 
   <div class="p-s">
-  <p>Name: Rosen Ivanov</p>
+  <p>Name: {{ user.profile.get_profile_full_name }}</p>
+      
+   {% if user.profile.date_of_birth %}   
+    <p>Age: {{ age }}</p>
+      {% endif %}
+  
+  <p>Email: {{ user.email }}</p>
 
-  <p>Age: 15</p>
-
-  <p>Username: RosenBG1234</p>
-
-    <a href="#">
+    <a href="{% url 'edit-profile' user.pk %}">
       <button class="edit-btn-profile"><i class="fa-solid fa-pencil"></i>Edit Profile</button>
     </a>
 

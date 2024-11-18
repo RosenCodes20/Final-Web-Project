@@ -9,7 +9,9 @@
     {% csrf_token %}  
       
    <button class="login-btn"><i class="fa-solid fa-right-to-bracket"></i>Login</button>
+   <div class="login-div">   
     <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>  
+   </div>    
   </form>
 </div>
 
