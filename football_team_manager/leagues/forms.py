@@ -7,7 +7,7 @@ from football_team_manager.leagues.models import League
 class BaseLeagueForm(forms.ModelForm):
 
     class Meta:
-        fields = "__all__"
+        exclude = ("user", )
         model = League
 
         labels = {
@@ -34,3 +34,7 @@ class BaseLeagueForm(forms.ModelForm):
         if not country[0].isupper():
 
             raise ValidationError("Please enter a country that starts with capital letter")
+
+
+class CreateLeagueForm(BaseLeagueForm):
+    pass

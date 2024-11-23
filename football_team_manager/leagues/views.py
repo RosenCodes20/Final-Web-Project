@@ -1,18 +1,23 @@
 from django.shortcuts import render, redirect
 
-from football_team_manager.leagues.forms import BaseLeagueForm
+from football_team_manager.leagues.forms import BaseLeagueForm, CreateLeagueForm
 
 
 def create_league(request):
 
     if request.method == "GET":
-        form = BaseLeagueForm()
+        form = CreateLeagueForm()
 
     else:
-        form = BaseLeagueForm(request.POST)
+        form = CreateLeagueForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            league = form.save(commit=False)
+
+            league.user = request.user
+
+            league.save()
+
             return redirect("index")
 
     context = {
