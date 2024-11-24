@@ -1,12 +1,13 @@
 from django import forms
 
 from football_team_manager.players.models import Player
+from football_team_manager.teams.models import Team
 
 
 class BasePlayerForm(forms.ModelForm):
 
     class Meta:
-        fields = "__all__"
+        exclude = ("user", )
         model = Player
 
         error_messages = {
@@ -25,12 +26,25 @@ class BasePlayerForm(forms.ModelForm):
             }
         }
 
+    def __init__(self, *args, user=None, **kwargs):
+        super().__init__(*args, **kwargs)
 
-class PlayerEditForm(BasePlayerForm):
+        if user:
+            self.fields['club'].queryset = Team.objects.filter(user=user)
+
+class CreatePlayerForm(BasePlayerForm):
     pass
 
 
+class PlayerEditForm(BasePlayerForm):
+    class Meta(BasePlayerForm.Meta):
+        exclude = ("user", "image_photo")
+
+
 class PlayerDeleteForm(BasePlayerForm):
+
+    class Meta(BasePlayerForm.Meta):
+        exclude = ("user", "image_photo")
 
     def __init__(self, *args, **kwargs):
 

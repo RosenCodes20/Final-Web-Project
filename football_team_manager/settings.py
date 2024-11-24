@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-t*f9n6jl5*9r%gq1ec00v7mkye(2xfu$+mvsco3zxg7o5hjea^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ["relative-perfectly-bluebird.ngrok-free.app"]
+#
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://relative-perfectly-bluebird.ngrok-free.app"
+# ]
 
 
 # Application definition
@@ -42,6 +46,7 @@ INSTALLED_APPS = [
     "football_team_manager.leagues",
     "football_team_manager.players",
     "football_team_manager.teams",
+    'football_team_manager.schemes.apps.SchemesConfig'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +87,7 @@ WSGI_APPLICATION = 'football_team_manager.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "football_team_manager_2",
+        "NAME": "football_team_manager",
         "USER": "postgres",
         "PASSWORD": "postgres",
         "HOST": "127.0.0.1",
@@ -140,3 +145,6 @@ AUTH_USER_MODEL = "accounts.User"
 LOGIN_REDIRECT_URL = "index"
 LOGOUT_REDIRECT_URL = "index"
 
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")

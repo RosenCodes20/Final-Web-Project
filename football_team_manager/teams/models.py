@@ -1,8 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 from football_team_manager.leagues.models import League
 from football_team_manager.teams.validators import validate_team_players, validate_team_name
 
+UserModel = get_user_model()
 
 class Team(models.Model):
 
@@ -11,7 +13,6 @@ class Team(models.Model):
         validators=[
             validate_team_name
         ],
-        unique=True
     )
 
     team_league = models.ForeignKey(
@@ -26,6 +27,11 @@ class Team(models.Model):
         validators=[
             validate_team_players
         ]
+    )
+
+    user = models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE
     )
 
     def __str__(self):

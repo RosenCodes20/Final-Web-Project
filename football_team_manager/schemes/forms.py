@@ -6,7 +6,7 @@ from football_team_manager.schemes.models import Scheme
 class SchemeBaseForm(forms.ModelForm):
 
     class Meta:
-        fields = "__all__"
+        exclude = ("user", )
         model = Scheme
 
 
