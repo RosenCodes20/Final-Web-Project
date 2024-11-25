@@ -62,12 +62,12 @@ form input, select{
     padding-right: 5px;
 }
 
-form .edit-btn, .player-form .edit-profile-btn {
+.player-form form .edit-btn, .player-form .edit-profile-btn {
     border: 2px solid #3A8ABE;
     background-color: #3A8ABE;
 }
 
-form .edit-btn:hover, .player-form .edit-profile-btn:hover {
+.player-form form .edit-btn:hover, .player-form .edit-profile-btn:hover {
     cursor: pointer;
     opacity: 0.6;
     border-radius: 14px;
@@ -75,12 +75,12 @@ form .edit-btn:hover, .player-form .edit-profile-btn:hover {
     border: 2px solid #3A8ABE;
 }
 
-form .delete-btn {
+.player-form form .delete-btn {
     border: 2px solid #DE4B39;
     background-color: #DE4B39;
 }
 
-form .delete-btn:hover {
+.player-form form .delete-btn:hover {
     cursor: pointer;
     opacity: 0.6;
     border-radius: 14px;
@@ -88,12 +88,12 @@ form .delete-btn:hover {
     background-color: #DE4B39;
 }
 
-form .login-btn {
+.player-form form .login-btn {
     border: 2px solid #5F69FB;
     background-color: #5F69FB;
 }
 
-form .login-btn:hover {
+.player-form form .login-btn:hover {
     cursor: pointer;
     opacity: 0.6;
     border-radius: 14px;
@@ -101,12 +101,12 @@ form .login-btn:hover {
     border: 2px solid #5F69FB;
 }
 
-form .register-btn {
+.player-form form .register-btn {
     border: 2px solid #268A1A;
     background-color: #268A1A;
 }
 
-form .register-btn:hover {
+.player-form form .register-btn:hover {
     cursor: pointer;
     opacity: 0.6;
     border-radius: 14px;

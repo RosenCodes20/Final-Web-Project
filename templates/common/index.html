@@ -15,22 +15,24 @@
     
     <div class="players-containers">
     
-      {% for player in players %}  
+      {% for player in filtered_players %}  
+    
+          <div class="player-cards">
           
-      <div class="player-cards">
-      
-        <img src="{{ player.image_url }}" alt="Eden Hazard">
-        <p>Name: {{ player.name|truncatechars:10|capfirst }}</p>
-        <p>Age: {{ player.age }}</p>
-        <p>Price: {{ player.price|join:' ' }}$</p>
-        <a href="{% url 'player-details' player.pk %}" class="btn-groups"><button><i class="fa-solid fa-circle-info"></i>Details</button></a>
-      
-      </div>
+            <img src="{{ player.image_photo.url }}" alt="">
+            <p>Name: {{ player.name|truncatechars:10|capfirst }}</p>
+            <p>Age: {{ player.age }}</p>
+            <p>Price: {{ player.price|join:' ' }}$</p>
+            <a href="{% url 'player-details' player.pk %}" class="btn-groups"><button><i class="fa-solid fa-circle-info"></i>Details</button></a>
           
-      {% empty %}    
-          <h1 class="no-players-text">No players here! :(</h1>    
+          </div>
+          
     {% endfor %}
-          
+    
+    {% if not request.user.is_authenticated or not filtered_players %}
+        <h1 class="no-players-text">No players here! :(</h1>  
+    
+    {% endif %}
     </div>
     
     <div class="pagination">

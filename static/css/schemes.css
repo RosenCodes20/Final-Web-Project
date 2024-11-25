@@ -5,3 +5,23 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.scheme-h1 {
+    text-align: center;
+    color: white;
+}
+
+.players_photos {
+
+    width: 60px;
+    position: relative;
+
+}
+
+.gk_433 {
+    margin-left: 740px;
+    margin-top: 370px;
+    width: 60px;
+    position: relative;
+}
+
