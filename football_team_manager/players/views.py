@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect
+from rest_framework import status
+from rest_framework.generics import ListAPIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from football_team_manager.players.forms import PlayerEditForm, PlayerDeleteForm, BasePlayerForm, CreatePlayerForm
 from football_team_manager.players.models import Player
+from football_team_manager.players.serializers import PlayerSerializer
 
 
 def create_player(request):
@@ -81,3 +86,20 @@ def player_details(request, pk):
     }
 
     return render(request, "players/player_details.html", context)
+
+
+class ListPlayersView(APIView):
+    def get(self, request, *args, **kwargs):
+        players = Player.objects.filter(user=request.user)
+        serializer = PlayerSerializer(players, many=True)
+        return Response({"players": serializer.data}, status=status.HTTP_200_OK)
+
+    def post(self, request, *args, **kwargs):
+        serializer = PlayerSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    

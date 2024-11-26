@@ -8,4 +8,5 @@ urlpatterns = [
     path("delete-player/<int:pk>/", views.delete_player, name="delete-player"),
     path("edit-player/<int:pk>/", views.edit_player, name="edit-player"),
     path("player-details/<int:pk>/", views.player_details, name="player-details"),
+    path("api/players/", views.ListPlayersView.as_view(), name="api-players"),
 ]
