@@ -2,16 +2,16 @@
 {% block content %}
     
     <h1 class="scheme-h1">Scheme: {{ scheme.scheme }}</h1>
+    <div class="formation">
+    {% if scheme.scheme == "3-5-2" %}
     
-    {% if scheme.scheme == "4-3-3" %}
-    
-        <img class="scheme-png" src="https://images.squarespace-cdn.com/content/v1/58ee0b551e5b6c8ff18b94ad/1687429343176-IANNVM31YIB6ZLHZZG7G/the+4-3-3+formation+guide+the+sporting+blog+%281%29+%281%29.png?format=1000w" alt="">
+        <img class="scheme-png" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/3-5-2.png" alt="">
         
     <div class="players_photos">  
     
-        <img class="gk_433" src="{{ goalkeeper.image_photo.url }}" alt="">    
+        <img class="goalkeeper" src="{{ goalkeeper.image_photo.url }}" alt="">    
         
     </div>
-        
+        </div>
     {% endif %}
 {% endblock %}

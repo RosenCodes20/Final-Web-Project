@@ -1,27 +1,66 @@
-.scheme-png {
-    width: 300px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 .scheme-h1 {
     text-align: center;
-    color: white;
+    margin-bottom: 20px;
 }
 
+/* Formation Container */
+.formation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Formation Image */
+.scheme-png {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    border: 2px solid #fff;
+}
+
+/* Players Photos Overlay */
 .players_photos {
-
-    width: 60px;
-    position: relative;
-
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Prevent interaction with the overlay */
 }
 
-.gk_433 {
-    margin-left: 740px;
-    margin-top: 370px;
-    width: 60px;
-    position: relative;
+/* Goalkeeper Positioning */
+.goalkeeper {
+    position: absolute;
+    top: 85%; /* Adjust vertical position */
+    left: 47%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the player photo */
+    width: 10%; /* Relative size */
+    aspect-ratio: 1/1; /* Maintain a circular shape */
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
 }
 
+/* General Styling for Players */
+.players_photos img {
+    object-fit: cover;
+    width: 10%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .scheme-png {
+        max-width: 800px;
+    }
+
+    .goalkeeper {
+        width: 8%;
+    }
+}
