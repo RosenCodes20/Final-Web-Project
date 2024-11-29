@@ -1,0 +1,26 @@
+{% extends 'common/base.html' %}
+{% block content %}
+
+<div class="player-form">
+    <form action="{% url 'register' %}" method="post">
+    <h2>Register</h2>
+        
+        {% for field in form %}
+        
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% for error in field.errors %}
+                {{ error }}
+            {% endfor %}
+       
+    {% endfor %}
+        {% csrf_token %}
+        <button class="register-btn"><i class="fa-solid fa-address-card"></i>Register</button>
+        
+        <div class="register-div">
+        <p>Have an account? <a href="{% url 'login' %}">Login</a></p>
+        </div>   
+    </form>
+</div>
+
+{% endblock %}

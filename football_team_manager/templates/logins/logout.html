@@ -1,0 +1,21 @@
+{% extends 'common/base.html' %}
+{% block content %}
+
+<div class="logout-nav-menu">
+
+  <h1>Are you sure you want to logout?</h1>
+
+  <div class="btn-group">
+      
+  <form action="{% url 'logout' %}" method="post" class="logout-form">    
+    <button class="yes-btn"><i class="fa-solid fa-check"></i>Yes</button>       
+      {% csrf_token %}
+   </form>
+      <a href="javascript:history.back()"><button class="no-btn"><i class="fa-solid fa-x"></i>No</button></a>
+      
+
+
+  </div>
+</div>
+
+{% endblock %}

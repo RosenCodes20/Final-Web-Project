@@ -1,0 +1,84 @@
+{% load static %}
+{% load get_leagues %}
+{% load get_teams %}
+{% load get_scheme %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Football Team Manager</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" type="image/x-icon" href="https://pngimg.com/d/football_PNG52775.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<style>
+    body {
+        background-image: url("/static/images/background.jpg");
+        background-repeat: no-repeat;
+    }
+</style>
+
+<body>
+
+    <div class="links">
+
+        <a href="{% url "index" %}" class="ball-link-a"><img class="ball-link" src="/static/images/ball.png" alt=""></a>
+            {% get_scheme as scheme %}
+            {% if request.user.scheme_set.all %}
+                {% if scheme %}
+                    <a href="{% url 'create-league' %}" class="create-league">Create League</a>
+                {% endif %}
+            {% endif %}
+    
+            {% get_leagues as leagues %}
+            {% if request.user.league_set.all %}
+                {% if leagues %}
+                    <a href="{% url 'create-team' %}" class="create-team">Create Team</a>
+                {% endif %}    
+            {% endif %}
+    
+            {% get_teams as teams %}
+            {% if request.user.team_set.all %}
+                 {% if teams %}    
+                    <a href="{% url 'create-player' %}" class="create-player">Create Player</a> 
+                {% endif %}
+            {% endif %}
+            
+            {% get_scheme as scheme %}
+                {% if not request.user.scheme_set.all %}
+                    <a href="{% url 'create-scheme' %}">Create Scheme</a>  
+                {% else %}
+                    <a href="{% url 'scheme-details' scheme.pk %}">Scheme Details</a>  
+                    
+                {% endif %}
+    
+            {% if not request.user.is_authenticated %}
+            <a href="{% url 'login' %}" class="login">Login</a>
+            <a href="{% url 'register' %}" class="register">Register</a>
+            
+            {% else %}
+            <a href="{% url 'logout' %}" class="logout">Logout</a>
+            <a href="{% url 'profile-details' request.user.pk %}" class="profile-details">Profile</a>
+                
+            {% endif %}
+      
+    </div>
+    
+    {% block content %}
+    	
+    {% endblock %}
+
+    <div class="base-footer">
+
+        <footer>
+            &copy;Rosen Rosenov Ivanov 2024 Football Team Manager
+            <a href="http://instagram.com"><i class="fa-brands fa-instagram"></i></a>
+            <a href="http://facebook.com"><i class="fa-brands fa-facebook"></i></a>
+        </footer>
+
+    </div>
+
+</body>
+</html>

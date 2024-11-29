@@ -1,0 +1,27 @@
+{% extends "common/base.html" %}
+{% block content %}
+    
+    <h1 class="scheme-h1">Scheme: {{ scheme.scheme }}</h1>
+    <div class="formation">
+    {% if scheme.scheme == "3-5-2" %}
+    
+        <img class="scheme-png" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/3-5-2.png" alt="">
+        
+        <div class="players">
+        
+        <img src="{{ goalkeeper352.image_photo.url }}" style="top: 90%; left: 50.5%;">
+        <img src="{{ central1_back352.image_photo.url }}" style="top: 76%; left: 42.5%">
+        <img src="{{ central2_back352.image_photo.url }}" style="top: 77%; left: 50.5%">
+        <img src="{{ central3_back352.image_photo.url }}" style="top: 76%; left: 58.5%">
+        <img src="{{ defensive_midfielder352.image_photo.url }}" style="top: 62.5%; left: 50.3%;">
+        <img src="{{ central1_midfielder352.image_photo.url }}" style="top: 55.5%; left: 43.5%">
+        <img src="{{ central2_midfielder352.image_photo.url }}" style="top: 55.5%; left: 57%">
+        <img src="{{ left_midfielder352.image_photo.url }}" style="top: 43%; left: 38%">
+        <img src="{{ right_midfielder352.image_photo.url }}" style="top: 43%; left: 62.3%">
+        <img src="{{ strikers1_striker352.image_photo.url }}" style="top: 26.5%; left: 44%">
+        <img src="{{ strikers2_striker352.image_photo.url }}" style="top: 26.5%; left: 56.4%">
+        </div>
+        </div>
+        
+    {% endif %}
+{% endblock %}
