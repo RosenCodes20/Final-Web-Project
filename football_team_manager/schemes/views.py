@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from football_team_manager.players.models import Player
@@ -25,10 +26,11 @@ def scheme_details(request, pk):
 
         defensive_midfielder352 = Player.objects.filter(user=request.user, position="cdm").last()
 
-        central_midfielders = Player.objects.filter(user=request.user, position="cm")[:2]
+        central_midfielders = Player.objects.filter(user=request.user, position="cm")[:3]
 
         central1_midfielder352 = central_midfielders[0] if len(central_midfielders) > 0 else None
         central2_midfielder352 = central_midfielders[1] if len(central_midfielders) > 1 else None
+        central3_midfielder352 = central_midfielders[2] if len(central_midfielders) > 2 else None
 
         left_midfielder352 = Player.objects.filter(user=request.user, position="lm").last()
         right_midfielder352 = Player.objects.filter(user=request.user, position="rm").last()
@@ -38,24 +40,35 @@ def scheme_details(request, pk):
         strikers1_striker352 = strikers[0] if len(strikers) > 0 else None
         strikers2_striker352 = strikers[1] if len(strikers) > 1 else None
 
+        left_back352 = Player.objects.filter(user=request.user, position="lb").last()
+        right_back352 = Player.objects.filter(user=request.user, position="rb").last()
+
+        left_winger352 =  Player.objects.filter(user=request.user, position="lw").last()
+        right_winger352 = Player.objects.filter(user=request.user, position="rw").last()
+
     context = {
         "scheme": scheme,
         "goalkeeper352": goalkeeper,
         "central1_back352": central1_back352,
         "central2_back352": central2_back352,
         "central3_back352": central3_back352,
+        "left_back352": left_back352,
+        "right_back352": right_back352,
         "defensive_midfielder352": defensive_midfielder352,
-        "central1_midfielder352": central1_midfielder352,
+        "central1_midfielder352": goalkeeper,
         "central2_midfielder352": central2_midfielder352,
+        "central3_midfielder352": central3_midfielder352,
         "left_midfielder352": left_midfielder352,
         "right_midfielder352": right_midfielder352,
+        "left_winger352": left_winger352,
+        "right_winger352": right_winger352,
         "strikers1_striker352": strikers1_striker352,
         "strikers2_striker352": strikers2_striker352,
     }
 
     return render(request, "scheme/scheme_details.html", context)
 
-
+@login_required
 def create_scheme(request):
 
     form = CreateSchemeForm(request.POST or None)
