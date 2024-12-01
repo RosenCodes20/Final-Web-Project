@@ -9,6 +9,7 @@
         <p>Price: {{ player.price }}$</p>
         <p>Team: {{ player.club.team_name }}</p>
         <p>League: {{ player.club.team_league.league_name}}</p>
+        <p>{{ player.name }} position: {{ player.position }}</p>  
         <a href="{% url 'edit-player' player.pk %}" class="btn-group"><button class="edit"><i class="fa-solid fa-pencil"></i>Edit</button></a>
         <a href="{% url 'delete-player' player.pk %}" class="btn-group"><button class="delete"><i class="fa-solid fa-trash"></i>Delete</button></a>
       </div>
