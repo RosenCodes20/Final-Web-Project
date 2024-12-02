@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect
+from drf_spectacular.utils import extend_schema, OpenApiResponse, OpenApiExample
 from rest_framework import status
-from rest_framework.generics import ListAPIView
+from rest_framework.decorators import api_view
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 
 from football_team_manager.players.forms import PlayerEditForm, PlayerDeleteForm, BasePlayerForm, CreatePlayerForm
 from football_team_manager.players.models import Player
@@ -88,18 +93,65 @@ def player_details(request, pk):
     return render(request, "players/player_details.html", context)
 
 
-class ListPlayersView(APIView):
-    def get(self, request, *args, **kwargs):
-        players = Player.objects.filter(user=request.user)
-        serializer = PlayerSerializer(players, many=True)
-        return Response({"players": serializer.data}, status=status.HTTP_200_OK)
+class ListPlayersView(ListAPIView):
+    model = Player
+    serializer_class = PlayerSerializer
 
-    def post(self, request, *args, **kwargs):
-        serializer = PlayerSerializer(data=request.data)
+    def get_queryset(self):
+        queryset = self.model.objects.all()
 
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        if self.request.user.is_authenticated:
+            queryset = queryset.filter(user=self.request.user)
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+        return queryset
+
+@extend_schema(
+    request=PlayerSerializer,
+    responses={201: PlayerSerializer, 400: PlayerSerializer},
+)
+class PlayerCreateView(CreateAPIView):
+    queryset = Player.objects.all()
+    serializer_class = PlayerSerializer
+    model = Player
+    permission_classes = [IsAuthenticated]
+
+
+    def perform_create(self, serializer):
+        user = self.request.user
+        player = serializer.save(user=user)
+        return player
+
+
+class PlayerDetailsView(RetrieveAPIView):
+    serializer_class = PlayerSerializer
+    model = Player
+
+    def get_queryset(self):
+        queryset = self.model.objects.all()
+        if self.request.user.is_authenticated:
+            queryset = queryset.filter(user=self.request.user)
+
+        return queryset
+
+
+class DeletePlayerView(APIView):
+    permission_classes = [IsAuthenticated]
+    def delete(self, request, pk):
+        player = Player.objects.get(id=pk)
+
+        player.delete()
+
+        return Response(data={"message": "Successfully deleted player!"}, status=status.HTTP_204_NO_CONTENT)
+
+
+class EditPlayerView(UpdateAPIView):
+    model = Player
+    serializer_class = PlayerSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = self.model.objects.all()
+        if self.request.user.is_authenticated:
+            queryset = queryset.filter(user=self.request.user)
+
+        return queryset
