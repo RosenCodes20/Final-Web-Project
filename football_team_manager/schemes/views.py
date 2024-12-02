@@ -9,11 +9,23 @@ from football_team_manager.schemes.models import Scheme
 def scheme_details(request, pk):
 
     scheme = Scheme.objects.get(id=pk)
-
+    #
     # goalkeeper = None
     # central1_back352 = None
     # central2_back352 = None
     # central3_back352 = None
+    # left_back352 = None
+    # right_back352 = None
+    # defensive_midfielder352 = None
+    # central1_midfielder352 = None
+    # central2_midfielder352 = None
+    # central3_midfielder352 = None
+    # left_midfielder352 = None
+    # right_midfielder352 = None
+    # left_winger352 = None
+    # right_winger352 = None
+    # strikers1_striker352 = None
+    # strikers2_striker352 = None
 
     if request.user.is_authenticated:
         goalkeeper = Player.objects.filter(user=request.user, position="gk").last()
@@ -55,7 +67,7 @@ def scheme_details(request, pk):
         "left_back352": left_back352,
         "right_back352": right_back352,
         "defensive_midfielder352": defensive_midfielder352,
-        "central1_midfielder352": goalkeeper,
+        "central1_midfielder352": central1_midfielder352,
         "central2_midfielder352": central2_midfielder352,
         "central3_midfielder352": central3_midfielder352,
         "left_midfielder352": left_midfielder352,
