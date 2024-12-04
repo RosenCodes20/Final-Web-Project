@@ -1,10 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from football_team_manager.leagues.models import League
 from football_team_manager.teams.forms import BaseTeamForm, CreateTeamForm
 from football_team_manager.teams.models import Team
 
-
+@login_required
 def create_team(request):
 
 

@@ -1,8 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from football_team_manager.leagues.forms import BaseLeagueForm, CreateLeagueForm
 
 
+@login_required
 def create_league(request):
 
     if request.method == "GET":

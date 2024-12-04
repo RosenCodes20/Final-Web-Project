@@ -30,8 +30,9 @@ class Index(ListView):
         else:
             queryset = []
 
-        if "player" in self.request.GET:
-            player = self.request.GET.get("player")
-            queryset = queryset.filter(name__icontains=player)
+        if self.request.user.is_authenticated:
+            if "player" in self.request.GET:
+                player = self.request.GET.get("player")
+                queryset = queryset.filter(name__icontains=player)
 
         return queryset
