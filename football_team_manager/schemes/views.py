@@ -1,14 +1,24 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.http import HttpResponseForbidden
+from django.shortcuts import render, redirect, get_object_or_404
 
 from football_team_manager.players.models import Player
 from football_team_manager.schemes.forms import CreateSchemeForm
 from football_team_manager.schemes.models import Scheme
 
 
+def test_func(request, pk):
+    scheme = get_object_or_404(Player, pk=pk)
+    return request.user == scheme.user
+
+@login_required
 def scheme_details(request, pk):
 
     scheme = Scheme.objects.get(id=pk)
+
+    if scheme.user != request.user:
+        return HttpResponseForbidden("You do not have permission to view this resource.")
+
     #
     # goalkeeper = None
     # central1_back352 = None
@@ -26,6 +36,7 @@ def scheme_details(request, pk):
     # right_winger352 = None
     # strikers1_striker352 = None
     # strikers2_striker352 = None
+
 
     if request.user.is_authenticated:
         goalkeeper = Player.objects.filter(user=request.user, position="gk").last()
