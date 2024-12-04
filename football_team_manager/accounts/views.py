@@ -1,8 +1,9 @@
 import datetime
 
 from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView
 from rest_framework import status
@@ -19,9 +20,10 @@ UserModel = get_user_model()
 class Login(LoginView):
     template_name = "logins/login.html"
 
-class Logout(LogoutView):
+class Logout(LoginRequiredMixin, LogoutView):
     template_name = "logins/logout.html"
     http_method_names = ['get', 'post']
+
 
 class Register(CreateView):
     template_name = "logins/register.html"
@@ -30,11 +32,15 @@ class Register(CreateView):
     success_url = reverse_lazy("login")
 
 
-class EditProfile(UpdateView):
+class EditProfile(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     template_name = "profile/edit-profile.html"
     form_class = EditProfileForm
     context_object_name = "profile"
+
+    def test_func(self):
+        user = get_object_or_404(UserModel, pk=self.kwargs['pk'])
+        return self.request.user.profile == user.profile
 
     def get_success_url(self):
 
@@ -45,10 +51,14 @@ class EditProfile(UpdateView):
             }
         )
 
-class ProfileDetails(DetailView):
+class ProfileDetails(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = UserModel
     template_name = "profile/profile-details.html"
     context_object_name = "profile"
+
+    def test_func(self):
+        user = get_object_or_404(UserModel, pk=self.kwargs['pk'])
+        return self.request.user.profile == user.profile
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
