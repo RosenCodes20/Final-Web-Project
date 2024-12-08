@@ -23,15 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', config('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG") == "True"
+DEBUG = os.getenv('DEBUG', config('DEBUG')) == "True"
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS')).split(',')
 
 
-CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", []).split(",")
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', config('CSRF_TRUSTED_ORIGINS', [])).split(',')
 
 # Application definition
 
@@ -110,11 +110,11 @@ WSGI_APPLICATION = 'football_team_manager.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": config('DB_NAME'),
-        "USER": config('DB_USER'),
-        "PASSWORD": config('PASS'),
-        "HOST": config("HOST"),
-        "PORT": config("PORT"),
+        "NAME": os.getenv('DB_NAME', config('DB_NAME')),
+        "USER": os.getenv('DB_USER', config('DB_USER')),
+        "PASSWORD": os.getenv('PASS', config('PASS')),
+        "HOST": os.getenv('HOST', config('HOST')),
+        "PORT": os.getenv('PORT', config('PORT')),
     }
 }
 
