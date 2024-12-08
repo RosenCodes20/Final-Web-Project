@@ -1,66 +1,116 @@
-.scheme-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Formation Container */
 .formation {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    max-width: 600px;
+    width: 600px;
     margin: 0 auto;
 }
 
-/* Formation Image */
+.scheme-h1  {
+    text-align: center;
+    font-size: 2rem;
+    color: transparent;
+    background-image: -webkit-linear-gradient(right, lightgray, black, lightgray, black);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+
 .scheme-png {
+    position: relative;
+    z-index: 1;
     width: 100%;
-    max-width: 600px;
+    height: auto;
     border-radius: 10px;
-    border: 2px solid #fff;
+    border: 2px solid #ddd;
+    transform: scale(1);
+    transition: transform 0.3s ease;
 }
 
-/* Players Photos Overlay */
-.players_photos {
+.players img {
+    width: 40px;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Prevent interaction with the overlay */
+    z-index: 2;
+    transform: translate(-50%, -50%);
 }
 
-/* Goalkeeper Positioning */
-.goalkeeper {
-    position: absolute;
-    top: 85%; /* Adjust vertical position */
-    left: 47%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Center the player photo */
-    width: 10%; /* Relative size */
-    aspect-ratio: 1/1; /* Maintain a circular shape */
-    border-radius: 50%;
-    border: 2px solid white;
-    object-fit: cover;
-}
-
-/* General Styling for Players */
-.players_photos img {
-    object-fit: cover;
-    width: 10%;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    border: 2px solid white;
-}
-
-/* Responsive Adjustments */
-@media (min-width: 768px) {
-    .scheme-png {
-        max-width: 800px;
+@media (max-width: 768px) {
+    .scheme-h1 {
+        font-size: 1.4rem;
     }
 
-    .goalkeeper {
-        width: 8%;
+    .scheme-png {
+        width: 40%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .formation {
+        position: relative;
+        width: 100%;
+    }
+
+    .players {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: -10%;
+        left: 0;
+        display: block;
+    }
+
+    .players .defenders {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 9.6%;
+        left: 0;
+        display: block;
+    }
+
+    .players img {
+        width: 20px;
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+}
+
+@media (max-width: 480px) {
+    .scheme-h1 {
+        font-size: 1.4rem;
+    }
+
+    .scheme-png {
+        width: 40%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .formation {
+        position: relative;
+        width: 100%;
+    }
+
+    .players {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: -10%;
+        left: 0;
+        display: block;
+    }
+
+    .players .defenders {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 9.6%;
+        left: 0;
+        display: block;
+    }
+
+    .players img {
+        width: 20px;
+        transform: translate(-50%, -50%) scale(0.7);
     }
 }

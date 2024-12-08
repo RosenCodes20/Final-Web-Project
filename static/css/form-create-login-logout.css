@@ -121,3 +121,53 @@ form input, select{
 .login-div {
     text-align: center;
 }
+
+@media (max-width: 768px) {
+    form {
+        width: 95%;
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    form h2 {
+        font-size: 30px;
+    }
+
+    form label {
+        font-size: 14px;
+    }
+
+    form input, select {
+        padding: 8px;
+    }
+
+    .player-form form button {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    form {
+        width: 100%;
+        margin: 20px auto;
+        padding: 10px;
+    }
+
+    form h2 {
+        font-size: 24px;
+    }
+
+    form label {
+        font-size: 12px;
+    }
+
+    form input, select {
+        padding: 6px;
+    }
+
+    .player-form form button {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+}

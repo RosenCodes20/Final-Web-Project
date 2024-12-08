@@ -70,3 +70,77 @@
 .players-container .player-card .btn-group i {
     padding-right: 5px;
 }
+
+@media (max-width: 768px) {
+    .players-container {
+        width: 90%;
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .player-card {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+
+    .players-container img {
+        width: 80px;
+    }
+
+    .player-card p {
+        font-size: 16px;
+    }
+
+    .players-container .player-card .btn-group button {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+
+    .players-container .player-card .btn-group .delete {
+        margin-left: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .players-container {
+        width: 100%;
+        margin: 10px auto;
+        padding: 10px;
+    }
+
+    .player-card {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .players-container img {
+        width: 60px;
+        margin-bottom: 10px;
+    }
+
+    .player-card p {
+        font-size: 14px;
+    }
+
+    .players-container .player-card .btn-group button {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+
+    .players-container .player-card .btn-group .delete {
+        margin-left: 5px;
+    }
+
+    .players-container .player-card .btn-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .players-container .player-card .btn-group button {
+        margin-bottom: 5px;
+    }
+}
+

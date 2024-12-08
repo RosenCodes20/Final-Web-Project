@@ -53,3 +53,41 @@
 .container .edit-btn-profile i {
     padding-right: 5px;
 }
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .container img {
+        width: 200px;
+    }
+
+    .container .p-s {
+        font-size: 24px;
+    }
+
+    .container .edit-btn-profile {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    .container .p-s {
+        font-size: 20px;
+    }
+
+    .container .edit-btn-profile {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+}
+

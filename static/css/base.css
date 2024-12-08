@@ -72,3 +72,115 @@ h1 {
     color: white;
     font-size: 4.5em;
 }
+
+@media (max-width: 768px) {
+    .links {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .links a {
+        font-size: 16px;
+        padding: 5px 0;
+        text-decoration: none;
+    }
+
+    .base-footer {
+        flex-direction: column;
+        font-size: 14px;
+        padding: 10px 0;
+        height: auto;
+        text-align: center;
+    }
+
+    .ball-link {
+        width: 40px;
+        height: 40px;
+    }
+
+    .no-players-text {
+        font-size: 3em;
+    }
+}
+
+@media (max-width: 768px) {
+    .players-container {
+        width: 90%;
+        margin: 20px auto;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .player-card {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+
+    .players-container img {
+        width: 80px;
+    }
+
+    .player-card p {
+        font-size: 16px;
+    }
+
+    .players-container .player-card .btn-group button {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+
+    .players-container .player-card .btn-group .delete {
+        margin-left: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .players-container {
+        width: 100%;
+        margin: 10px auto;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .links a {
+        text-decoration: none;
+    }
+
+    .player-card {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .players-container img {
+        width: 60px;
+    }
+
+    .player-card p {
+        font-size: 14px;
+    }
+
+    .players-container .player-card .btn-group button {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+
+    .players-container .player-card .btn-group .delete {
+        margin-left: 5px;
+    }
+
+    .players-container .player-card .btn-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .players-container .player-card .btn-group button {
+        margin-bottom: 5px;
+    }
+}
+
+

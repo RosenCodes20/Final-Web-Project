@@ -67,3 +67,44 @@
     justify-content: center;
     align-items: center;
 }
+
+@media screen and (max-width: 768px) {
+    .logout-nav-menu {
+        margin-top: 5rem;
+    }
+
+    .logout-nav-menu h1 {
+        font-size: 2.5rem;
+    }
+
+    .logout-nav-menu .btn-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logout-nav-menu .btn-group button {
+        font-size: 1.3rem;
+        padding: 6px 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logout-nav-menu {
+        margin-top: 3rem;
+    }
+
+    .logout-nav-menu h1 {
+        font-size: 2rem;
+    }
+
+    .logout-nav-menu .btn-group button {
+        font-size: 1.2rem;
+        padding: 5px 8px;
+    }
+
+    .logout-nav-menu .btn-group .yes-btn,
+    .logout-nav-menu .btn-group .no-btn {
+        width: 100%;
+    }
+}
