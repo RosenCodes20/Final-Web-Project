@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os.path
 from pathlib import Path
 
-from decouple import config
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,14 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG") == True
 
-# ALLOWED_HOSTS = ["relative-perfectly-bluebird.ngrok-free.app"]
-#
-# CSRF_TRUSTED_ORIGINS = [
-#     "https://relative-perfectly-bluebird.ngrok-free.app"
-# ]
+ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 
+
+CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", []).split(",")
 
 # Application definition
 
@@ -51,12 +49,16 @@ INSTALLED_APPS = [
     "football_team_manager.teams",
     'football_team_manager.schemes.apps.SchemesConfig',
     "rest_framework",
-    'rest_framework_swagger',
     'drf_spectacular',
+    "drf_spectacular_sidecar",
+    "rest_framework_simplejwt",
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
 
 SPECTACULAR_SETTINGS = {
@@ -64,6 +66,9 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Your project description',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
+    'SWAGGER_UI_DIST': 'SIDECAR',
+    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
+    'REDOC_DIST': 'SIDECAR',
 }
 
 MIDDLEWARE = [
