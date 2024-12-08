@@ -1,0 +1,208 @@
+
+.players-containers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.player-cards {
+    margin-top: 5px;
+    background-color: #234465;
+    border: 1px solid #234465;
+    border-radius: 10px;
+    width: 45%;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: shine 3s linear infinite;
+    overflow: hidden;
+    background: linear-gradient(to right, #fff 20%, #fff 40%, #ECD08C 50%, #ECD08C 55%, #fff 70%, #fff 100%);
+}
+
+.player-cards p {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+
+.player-cards img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.player-cards .btn-groups button {
+    border: 2px solid black;
+    border-radius: 14px;
+    background-color: #333333;
+    color: white;
+    padding: 8px 13px;
+    font-size: 16px;
+}
+
+.player-cards .btn-groups button:hover {
+    cursor: pointer;
+    background-color: green;
+    border: 2px solid lightgreen;
+    border-radius: 14px;
+}
+
+.player-cards .btn-groups i {
+    padding-right: 5px;
+}
+
+.players-containers h1 {
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    color: -webkit-linear-gradient(right, lightgray, black, lightgray, black);
+}
+
+
+.search-form button {
+    background-color: transparent;
+    border: none;
+    margin-right: 5px;
+}
+
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.step-links {
+    display: flex;
+    gap: 10px;
+}
+
+.step-links a, .step-links .current {
+    padding: 8px 12px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.step-links a {
+    color: #007BFF;
+    background-color: #f8f9fa;
+}
+
+.step-links a:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.step-links .current {
+    background-color: #f0f0f0;
+    color: #333;
+    border-color: #bbb;
+    font-weight: bold;
+}
+
+.step-links a.next, .step-links a.last {
+    color: #fff;
+    background-color: #28a745;
+}
+
+.step-links a.next:hover, .step-links a.last:hover {
+    background-color: #218838;
+    color: #fff;
+}
+
+.step-links a:disabled {
+    pointer-events: none;
+    color: #aaa;
+    border-color: #ddd;
+    background-color: #f9f9f9;
+}
+
+.search-bar button {
+    background-color: transparent;
+    border: none;
+    margin-right: 5px;
+}
+
+.search-form i {
+    position: absolute;
+    margin-left: 365px;
+    margin-top: -3rem;
+}
+
+.search-form {
+    margin-bottom: 20px;
+
+}
+
+@media (max-width: 768px) {
+    .player-cards {
+        width: 80%;
+    }
+
+    .player-cards img {
+        width: 70px;
+    }
+
+    .player-cards .btn-groups button {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+
+    .search-form {
+        position: relative;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .search-form i {
+        position: absolute;
+        margin-left: 0;
+        margin-top: 0;
+        top: 41.5%;
+        left: 80.6%;
+        transform: translateY(-50%);
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .player-cards {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .player-cards img {
+        width: 60px;
+    }
+
+    .player-cards p {
+        font-size: 16px;
+    }
+
+    .player-cards .btn-groups button {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+
+    .search-form {
+        margin-bottom: 10px;
+    }
+
+    .search-form i {
+        font-size: 18px;
+        right: 15px;
+    }
+
+    .step-links a, .step-links .current {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
