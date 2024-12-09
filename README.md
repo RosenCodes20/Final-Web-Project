@@ -5,6 +5,8 @@ You are a football coach and you want to make your dream football team but first
 After you login you are free to create schemes, leagues, players and teams.
 You also have a profile that you can edit :).
 
+### And the most important thing is to have fun 😁.
+
 Let me tell you how to run this code.
 
 ### 1.Clone this repository
