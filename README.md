@@ -8,6 +8,6 @@ You also have a profile that you can edit :).
 Let me tell you how to run this code.
 
 1.Clone this repository
-'''
-//git clone https://github.com/RosenCodes20/Final-Web-Project
-'''
+```
+// git clone https://github.com/RosenCodes20/Final-Web-Project
+```
