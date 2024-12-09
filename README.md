@@ -14,15 +14,21 @@ git clone https://github.com/RosenCodes20/Final-Web-Project
 
 ### 2.Open the project
 
-### 3.Install dependencies
+### 3.Create venv (if not created)
+
+``` terminal
+python -m venv venv
+```
+
+### 4.Install dependencies
 ```terminal
 pip install -r requirements.txt
 ```
 
 
-### 4.Setup the database in the evn file (it should be hidden)
+### 5.Setup the database in the evn file (it should be hidden)
 
-### 5. Run the migrations
+### 6. Run the migrations
 
 ``` terminal
 
@@ -30,7 +36,7 @@ python manage.py migrate
 
 ```
 
-### 6.Run the project
+### 7.Run the project
 ``` terminal
 
 python manage.py runserver
