@@ -79,3 +79,23 @@ I extended the base django user so you can login and register with email, not us
 For me it is so nice feature and so entertaining.
 
 I also have added a Profile model which also you can edit, put profile picture, change date of birth, and have fun with. 😁
+
+### Django Tests
+
+I have have also added 13 tests.
+
+Some of them are form forms, views, models.
+
+
+### Prevented url attacks
+
+I have also prevented url attacks so no one will get your players or your profile.
+
+This is for more security and privacy updates.😁
+
+### Example for user so you can try it.
+
+email: roko@gmail.com
+password: 12admin34
+
+# And last but not least ENJOY 😎😁
