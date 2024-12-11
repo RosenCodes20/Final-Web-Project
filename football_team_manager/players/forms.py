@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 from football_team_manager.players.models import Player
 from football_team_manager.teams.models import Team
@@ -32,8 +33,20 @@ class BasePlayerForm(forms.ModelForm):
         if user:
             self.fields['club'].queryset = Team.objects.filter(user=user)
 
+
+
 class CreatePlayerForm(BasePlayerForm):
-    pass
+    
+    def clean_club(self):
+        club = self.cleaned_data['club']
+        user = club.user
+
+        if Team.objects.filter(team_name=club.team_name, user=user).first().players - 1 \
+                < club.teams.count():
+            raise ValidationError("No more players on this team!!!")
+
+        return club
+
 
 
 class PlayerEditForm(BasePlayerForm):
