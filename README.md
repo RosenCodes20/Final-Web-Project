@@ -51,6 +51,7 @@ python manage.py runserver
 
 # Additional functioanilities and user permittions
 
+### Small project description
 If you are unuathenticated user you have only get permissions and cannot post anything
 
 After you login you are able to create scheme which will be your dream team scheme.
@@ -62,3 +63,19 @@ When you create scheme, you create League. It should be football league as Premi
 After that you create team from this league. For example Barcelona is from LaLiga.
 
 And last you create player who you can see on the scheme, and edit and delete. 😊
+
+### Rest Functionalities
+
+At first I really liked to try rest.
+
+I added 6 rest endpoints and made the players view restful.
+
+If you want to try full rest capabilites, I recommend you to download Postman and try it there in the urls I have displayed.
+
+### Extending the user
+
+I extended the base django user so you can login and register with email, not username
+
+For me it is so nice feature and so entertaining.
+
+I also have added a Profile model which also you can edit, put profile picture, change date of birth, and have fun with. 😁
