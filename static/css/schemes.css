@@ -31,8 +31,8 @@
     transform: translate(-50%, -50%);
 }
 
-@media (max-width: 768px) {
-    .scheme-h1 {
+@media (max-width: 1600px) {
+     .scheme-h1 {
         font-size: 1.4rem;
     }
 
@@ -68,7 +68,7 @@
     }
 
     .players img {
-        width: 20px;
+        width: 50px;
         transform: translate(-50%, -50%) scale(0.7);
     }
 }
