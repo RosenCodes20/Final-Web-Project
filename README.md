@@ -47,3 +47,18 @@ python manage.py migrate
 python manage.py runserver
 
 ```
+
+
+# Additional functioanilities and user permittions
+
+If you are unuathenticated user you have only get permissions and cannot post anything
+
+After you login you are able to create scheme which will be your dream team scheme.
+
+I choosed the most 4 popular schemes for you to try.
+
+When you create scheme, you create League. It should be football league as Premier League, LaLiga and etc.
+
+After that you create team from this league. For example Barcelona is from LaLiga.
+
+And last you create player who you can see on the scheme, and edit and delete. 😊
