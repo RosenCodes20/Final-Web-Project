@@ -1,6 +1,10 @@
+import datetime as dt
+
+from datetime import datetime
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.core.exceptions import ValidationError
 from django.forms import DateInput, TextInput
 
 from football_team_manager.accounts.models import Profile
@@ -25,6 +29,16 @@ class ProfileBaseForm(forms.ModelForm):
         model = Profile
         exclude = ("user", )
 
+    def clean_date_of_birth(self):
+        date_of_birth = self.cleaned_data["date_of_birth"]
+
+        if not date_of_birth.year <= dt.date.today().year \
+            or not date_of_birth.month <= datetime.now().month \
+            or not date_of_birth.day <= datetime.now().day:
+
+            raise ValidationError("You cannot enter a year in future")
+
+        return date_of_birth
 
 class EditProfileForm(ProfileBaseForm):
 

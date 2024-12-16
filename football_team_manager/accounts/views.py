@@ -1,12 +1,13 @@
 import datetime
 
 from django.contrib.auth import get_user_model, authenticate
-from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView
 from rest_framework import status
+from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -17,7 +18,15 @@ from football_team_manager.accounts.models import User, Profile
 
 UserModel = get_user_model()
 
-class Login(LoginView):
+class Login(UserPassesTestMixin, LoginView):
+
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return False
+
+        elif not self.request.user.is_authenticated:
+            return True
+
     template_name = "logins/login.html"
 
 class Logout(LoginRequiredMixin, LogoutView):
@@ -25,11 +34,18 @@ class Logout(LoginRequiredMixin, LogoutView):
     http_method_names = ['get', 'post']
 
 
-class Register(CreateView):
+class Register(UserPassesTestMixin, CreateView):
     template_name = "logins/register.html"
     model = UserModel
     form_class = UserRegisterForm
     success_url = reverse_lazy("login")
+
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return False
+
+        elif not self.request.user.is_authenticated:
+            return True
 
 
 class EditProfile(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
