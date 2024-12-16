@@ -32,11 +32,11 @@ class ProfileBaseForm(forms.ModelForm):
     def clean_date_of_birth(self):
         date_of_birth = self.cleaned_data["date_of_birth"]
 
-        if not date_of_birth.year <= dt.date.today().year \
-            or not date_of_birth.month <= datetime.now().month \
-            or not date_of_birth.day <= datetime.now().day:
+        date_of_birth = datetime.combine(date_of_birth, datetime.min.time())
 
-            raise ValidationError("You cannot enter a year in future")
+        if date_of_birth > datetime.now():
+
+            raise ValidationError("You cannot enter a date in future!")
 
         return date_of_birth
 
