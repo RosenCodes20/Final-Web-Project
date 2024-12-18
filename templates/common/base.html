@@ -26,6 +26,11 @@
     <div class="links">
 
         <a href="{% url "index" %}" class="ball-link-a"><img class="ball-link" src="/static/images/ball.png" alt=""></a>
+            
+            {% if not request.user.myteam_set.all %}
+                <a href="{% url 'create-team-name' %}">Create MyTeam</a>
+            {% endif %}
+    
             {% get_scheme as scheme %}
             {% if request.user.scheme_set.all %}
                 {% if scheme %}
@@ -48,9 +53,9 @@
             {% endif %}
             
             {% get_scheme as scheme %}
-                {% if not request.user.scheme_set.all %}
+                {% if request.user.myteam_set.all and not request.user.scheme_set.all %}
                     <a href="{% url 'create-scheme' %}">Create Scheme</a>  
-                {% else %}
+                {% elif request.user.scheme_set.all %}
                     <a href="{% url 'scheme-details' scheme.pk %}">Scheme Details</a>  
                     
                 {% endif %}
