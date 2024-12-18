@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -17,7 +18,7 @@ def scheme_details(request, pk):
     scheme = Scheme.objects.get(id=pk)
 
     if scheme.user != request.user:
-        return HttpResponseForbidden("You do not have permission to view this resource.")
+        raise PermissionDenied()
 
     #
     # goalkeeper = None
@@ -93,6 +94,9 @@ def scheme_details(request, pk):
 
 @login_required
 def create_scheme(request):
+
+    if Scheme.objects.filter(user=request.user):
+        raise PermissionDenied()
 
     form = CreateSchemeForm(request.POST or None)
 

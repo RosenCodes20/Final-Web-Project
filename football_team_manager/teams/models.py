@@ -36,3 +36,16 @@ class Team(models.Model):
 
     def __str__(self):
         return self.team_name
+
+
+class MyTeam(models.Model):
+    team_name = models.CharField(
+        max_length=200
+    )
+
+    logo_url = models.URLField()
+
+    user = models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE
+    )

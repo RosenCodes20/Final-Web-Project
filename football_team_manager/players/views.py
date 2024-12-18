@@ -12,16 +12,25 @@ from rest_framework.reverse import reverse_lazy
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
+from football_team_manager.leagues.models import League
 from football_team_manager.players.forms import PlayerEditForm, PlayerDeleteForm, BasePlayerForm, CreatePlayerForm
 from football_team_manager.players.models import Player
 from football_team_manager.players.serializers import PlayerSerializer
+from football_team_manager.teams.models import Team
 
 
-class CreatePlayerView(LoginRequiredMixin, CreateView):
+class CreatePlayerView(UserPassesTestMixin, LoginRequiredMixin, CreateView):
     model = Player
     template_name = "players/create-player.html"
     form_class = CreatePlayerForm
     success_url = reverse_lazy("index")
+
+    def test_func(self):
+        if not Team.objects.filter(user=self.request.user) and not League.objects.filter(user=self.request.user):
+            return False
+
+        else:
+            return True
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()

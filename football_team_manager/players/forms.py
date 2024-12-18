@@ -36,7 +36,7 @@ class BasePlayerForm(forms.ModelForm):
 
 
 class CreatePlayerForm(BasePlayerForm):
-    
+
     def clean_club(self):
         club = self.cleaned_data['club']
         user = club.user
