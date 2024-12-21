@@ -31,6 +31,12 @@
                 <a href="{% url 'create-team-name' %}">Create MyTeam</a>
             {% endif %}
     
+            {% if request.user.myteam_set.all %}
+                
+                <a href="{% url 'schedule-details' request.user.pk %}">Schedule Details</a>
+                
+            {% endif %}
+    
             {% get_scheme as scheme %}
             {% if request.user.scheme_set.all %}
                 {% if scheme %}
