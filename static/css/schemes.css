@@ -31,7 +31,7 @@
     transform: translate(-50%, -50%);
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1340px) {
      .scheme-h1 {
         font-size: 1.4rem;
     }
