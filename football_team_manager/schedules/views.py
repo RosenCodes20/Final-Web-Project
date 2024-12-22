@@ -6,6 +6,7 @@ from django.views.generic import DetailView
 
 from football_team_manager.schedules.forms import CreateEventForm
 from football_team_manager.schedules.models import Event
+from football_team_manager.teams.models import MyTeam
 
 UserModel = get_user_model()
 
@@ -27,7 +28,7 @@ UserModel = get_user_model()
 def schedule_details(request, pk):
     user = UserModel.objects.get(id=pk)
 
-    if not request.user == user:
+    if not request.user == user or not MyTeam.objects.filter(user=user):
         raise PermissionDenied()
 
 
@@ -68,10 +69,11 @@ def add_event(request):
     return render(request, 'schedule/add_event.html', context)
 
 
+@login_required
 def all_events(request, pk):
     user = UserModel.objects.get(id=pk)
 
-    if not request.user == user:
+    if not request.user == user or not MyTeam.objects.filter(user=user):
         raise PermissionDenied()
 
     my_team = request.user.myteam_set.first()
@@ -86,10 +88,11 @@ def all_events(request, pk):
 
 
 
+@login_required
 def game_events(request, pk):
     user = UserModel.objects.get(id=pk)
 
-    if not request.user == user:
+    if not request.user == user or not MyTeam.objects.filter(user=user):
         raise PermissionDenied()
 
     my_team = request.user.myteam_set.first()
@@ -103,10 +106,12 @@ def game_events(request, pk):
 
     return render(request, 'schedule/schedule_details.html', context)
 
+
+@login_required
 def training_events(request, pk):
     user = UserModel.objects.get(id=pk)
 
-    if not request.user == user:
+    if not request.user == user or not MyTeam.objects.filter(user=user):
         raise PermissionDenied()
 
     my_team = request.user.myteam_set.first()
