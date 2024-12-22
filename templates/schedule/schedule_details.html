@@ -1,47 +1,41 @@
 {% extends 'common/base.html' %}
 {% block content %}
-    <div class="container">
-        <header class="text-center my-4">
-            <h1 class="text-danger">{{ my_team.team_name }}</h1>
-            <p class="lead">Upcoming Matches & Training Sessions</p>
-        </header>
-        
-        <div class="filters text-center mb-4">
-            <button class="btn btn-danger mx-2">All Events</button>
-            <button class="btn btn-danger mx-2">Games Only</button>
-            <button class="btn btn-danger mx-2">Training Sessions</button>
-            <button class="btn btn-danger mx-2">Other Events</button>
-        </div>
-        
+<div class="container flex-grow-1">
+    <header class="text-center my-4">
+        <h1 class="text-danger">{{ my_team.team_name }}</h1>
+        <p class="lead">Upcoming Matches & Training Sessions</p>
+    </header>
+    
+    <div class="filters text-center mb-4">
+        <a href="{% url 'all-events' request.user.pk %}"><button class="btn btn-danger mx-2">All Events</button></a>
+        <a href="{% url 'game-events' request.user.pk %}"><button class="btn btn-danger mx-2">Games Only</button></a>
+        <a href="{% url 'training-events' request.user.pk %}"><button class="btn btn-danger mx-2">Training Sessions</button></a>
+    </div>
+    
+    <div class="event-list">
         {% for event in events %}
-        {% if not event.is_training %}    
-        <div class="event-list">
             <div class="event card mb-3 shadow-sm">
                 <div class="card-body">
-                    <h3 class="card-title text-primary">Match vs {{ event.team_versus }}</h3>
+                    <h3 class="card-title text-primary">
+                        {% if not event.is_training %}
+                            Match vs {{ event.team_versus }}
+                        {% else %}
+                            Training Session
+                        {% endif %}
+                    </h3>
                     <p class="card-text">📅 <strong>Date:</strong> {{ event.date }}</p>
                     <p class="card-text">🕒 <strong>Time:</strong> {{ event.time }}</p>
                     <p class="card-text">📍 <strong>Location:</strong> {{ event.location }}</p>
                 </div>
             </div>
-            {% else %}
-            <div class="event card mb-3 shadow-sm">
-                <div class="card-body">
-                    <h3 class="card-title text-primary">Training Session</h3>
-                    <p class="card-text">📅 <strong>Date:</strong>  {{ event.date }}</p>
-                    <p class="card-text">🕒 <strong>Time:</strong> {{ event.time }}</p>
-                    <p class="card-text">📍 <strong>Location:</strong> {{ event.location }}</p>
-                </div>
-            </div>
-            {% endif %}
         {% empty %}
-            <h2>No events here!</h2>
+            <h2 class="text-center no-events">No events here!</h2>
         {% endfor %}
-        </div>
-        
-        <div class="text-center mt-4">
-            <a href="{% url 'add-event' %}" class="add-event">+ Add New Event</a>
-        </div>
+     <div class="text-center mt-4">
+        <a href="{% url 'add-event' %}" class="add-event">+ Add New Event</a>
+    </div>    
     </div>
     
+   
+</div>
 {% endblock %}
