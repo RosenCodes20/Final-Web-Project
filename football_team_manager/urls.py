@@ -28,6 +28,7 @@ urlpatterns = [
     path("leagues/", include("football_team_manager.leagues.urls")),
     path("accounts/", include("football_team_manager.accounts.urls")),
     path("schemes/", include("football_team_manager.schemes.urls")),
+    path('schedules/', include('football_team_manager.schedules.urls')),
     path("", include("football_team_manager.common.urls")),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     # Optional UI:

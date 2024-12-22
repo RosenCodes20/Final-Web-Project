@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "football_team_manager.leagues",
     "football_team_manager.players",
     "football_team_manager.teams",
+    "football_team_manager.schedules",
     'football_team_manager.schemes.apps.SchemesConfig',
     "rest_framework",
     'drf_spectacular',
