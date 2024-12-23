@@ -52,9 +52,13 @@ python manage.py runserver
 # Additional functioanilities and user permittions
 
 ### Small project description
-If you are unuathenticated user you have only get permissions and cannot post anything
+If you are unuathenticated user you have only get permissions and cannot post anything!
 
-After you login you are able to create scheme which will be your dream team scheme.
+After you login you are able to create your team by its name and logo png.
+
+When you create your team you will be able to manage the team schedule, with who teams to play, and manage its time and date.
+
+After that you are able to create scheme which will be your dream team scheme.
 
 I choosed the most 4 popular schemes for you to try.
 
