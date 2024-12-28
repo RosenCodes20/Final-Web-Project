@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -6,6 +8,7 @@ from django.views.generic import DetailView
 
 from football_team_manager.schedules.forms import CreateEventForm
 from football_team_manager.schedules.models import Event
+
 from football_team_manager.teams.models import MyTeam
 
 UserModel = get_user_model()
@@ -38,6 +41,13 @@ def schedule_details(request, pk):
         user=user
     ).order_by("date", "time")
 
+    for event in filtered_events:
+        date = event.date
+        date = datetime.combine(date, datetime.min.time())
+
+        if date < datetime.now():
+            event.delete()
+
     context = {
         "user": user,
         "my_team": my_team,
@@ -60,6 +70,7 @@ def add_event(request):
             event.user = request.user
 
             event.save()
+
             return redirect('schedule-details', pk=request.user.pk)
 
     context = {
