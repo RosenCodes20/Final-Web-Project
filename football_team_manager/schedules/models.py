@@ -28,3 +28,23 @@ class Event(models.Model):
         to=UserModel,
         on_delete=models.CASCADE
     )
+
+
+class EventAttendance(models.Model):
+    attended = models.BooleanField(
+        default=False
+    )
+
+    timestamp = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    event = models.ForeignKey(
+        to=Event,
+        on_delete=models.CASCADE
+    )
+
+    user = models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE
+    )

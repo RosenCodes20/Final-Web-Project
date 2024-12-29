@@ -61,6 +61,9 @@ def schedule_details(request, pk):
 @login_required
 def add_event(request):
 
+    if not MyTeam.objects.filter(user=request.user):
+        raise PermissionDenied()
+
     form = CreateEventForm(request.POST or None)
 
     if request.method == "POST":
@@ -135,3 +138,8 @@ def training_events(request, pk):
     }
 
     return render(request, 'schedule/schedule_details.html', context)
+
+
+def event_analytics(request):
+
+    return render(request, "")
