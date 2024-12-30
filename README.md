@@ -97,6 +97,11 @@ I have also prevented url attacks so no one will get your players or your profil
 
 This is for more security and privacy updates.😁
 
+### Deployed the project
+I also deployed the project so you can view it!
+
+Try it all have fun and feel how it is to be a coach :)
+
 ### Example for user so you can try it.
 
 email: roko@gmail.com
