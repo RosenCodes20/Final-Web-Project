@@ -1,0 +1,64 @@
+.containers {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.containers .title {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.summary {
+    font-size: 18px;
+    color: #666;
+    margin: 10px 0;
+}
+
+.sub-title {
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.analytics-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.analytics-table, .analytics-table th, .analytics-table td {
+    border: 1px solid #ddd;
+}
+
+.analytics-table th, .analytics-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.analytics-table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.analytics-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.analytics-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.analytics-table thead {
+    background-color: #f2f2f2;
+}
+
+.analytics-table tbody tr {
+    transition: background-color 0.3s;
+}
