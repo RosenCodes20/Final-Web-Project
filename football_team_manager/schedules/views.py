@@ -3,11 +3,13 @@ from datetime import datetime
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.db.models import Q
+from django.db.models.aggregates import Count
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView
 
 from football_team_manager.schedules.forms import CreateEventForm
-from football_team_manager.schedules.models import Event
+from football_team_manager.schedules.models import Event, EventAttendance
 
 from football_team_manager.teams.models import MyTeam
 
@@ -73,6 +75,8 @@ def add_event(request):
             event.user = request.user
 
             event.save()
+
+            EventAttendance.objects.create(user=request.user, event=event, attended=False)
 
             return redirect('schedule-details', pk=request.user.pk)
 
@@ -140,6 +144,51 @@ def training_events(request, pk):
     return render(request, 'schedule/schedule_details.html', context)
 
 
-def event_analytics(request):
+def event_analytics(request, pk):
+    user = UserModel.objects.get(id=pk)
 
-    return render(request, "")
+    if not request.user == user:
+        raise PermissionDenied()
+
+    total_events = Event.objects.filter(user=request.user).count()
+
+    total_attendance = EventAttendance.objects.filter(user=request.user, attended=True).count()
+
+    attendance_rate = (total_attendance / total_events) * 100 if total_events > 0 else 0
+
+    event_attendance = EventAttendance.objects.filter(user=request.user).values('event__team_versus', 'event__is_training').annotate(
+        total=Count('id'),
+        attended=Count('id', filter=Q(attended=True))
+    )
+
+    has_attended = EventAttendance.objects.filter()
+
+    context = {
+        "total_events": total_events,
+        "total_attendance": total_attendance,
+        "attendance_rate": attendance_rate,
+        "event_attendance": event_attendance
+    }
+
+    return render(request, "schedule/event_analytics.html", context)
+
+
+def attend_functionality(request, pk):
+
+    event = EventAttendance.objects.get(id=pk)
+
+    event.attended = True
+
+    event.save()
+
+    return redirect(request.META["HTTP_REFERER"], user=request.user)
+
+
+def attend_functionality_to_false(request, pk):
+    event = EventAttendance.objects.get(id=pk)
+
+    event.attended = False
+
+    event.save()
+
+    return redirect(request.META["HTTP_REFERER"], user=request.user)
