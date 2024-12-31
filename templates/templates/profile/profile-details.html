@@ -1,0 +1,32 @@
+{% extends 'common/base.html' %}
+{% block content %}
+
+<div class="container">
+
+  <div class="cont-img">
+   {% if not profile.profile.profile_picture %}   
+      <img src="https://w7.pngwing.com/pngs/184/113/png-transparent-user-profile-computer-icons-profile-heroes-black-silhouette-thumbnail.png" alt="Profile picture">
+   {% else %}
+      <img src="{{ profile.profile.profile_picture }}">
+   
+   {% endif %}   
+  </div>
+
+  <div class="p-s">
+  <p>Name: {{ profile.profile.get_profile_full_name }}</p>
+      
+   {% if profile.profile.date_of_birth %}   
+    <p>Age: {{ age }}</p>
+      {% endif %}
+  
+  <p>Email: {{ profile.email }}</p>
+
+    <a href="{% url 'edit-profile' profile.pk %}">
+      <button class="edit-btn-profile"><i class="fa-solid fa-pencil"></i>Edit Profile</button>
+    </a>
+
+  </div>
+
+</div>
+
+{% endblock %}

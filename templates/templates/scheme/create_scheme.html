@@ -1,0 +1,18 @@
+{% extends "common/base.html" %}
+{% block content %}
+
+    <div class="player-form">
+        
+        <form action="{% url 'create-scheme' %}" method="post">
+            <h2>Choose scheme</h2>
+            {{ form }}
+            {% csrf_token %}
+            
+            <button><i class="fa-solid fa-check"></i>Choose Scheme</button>
+            
+        </form>
+    
+    </div>
+    
+    
+{% endblock %}
