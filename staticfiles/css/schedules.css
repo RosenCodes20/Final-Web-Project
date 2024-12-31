@@ -78,6 +78,10 @@
     transform: translateY(1px);
 }
 
+.check-btns {
+    color: green;
+}
+
 
 @media (max-width: 768px) {
     .container {
