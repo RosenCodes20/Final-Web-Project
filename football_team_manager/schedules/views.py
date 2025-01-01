@@ -31,9 +31,6 @@ UserModel = get_user_model()
 
 @login_required
 def schedule_details(request, pk):
-
-    Event.objects.all().delete()
-
     user = UserModel.objects.get(id=pk)
 
     if not request.user == user or not MyTeam.objects.filter(user=user):
