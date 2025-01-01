@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin, PermissionRequiredMixin
@@ -81,7 +81,10 @@ class ProfileDetails(LoginRequiredMixin, UserPassesTestMixin, DetailView):
         model = self.object
 
         if model.profile.date_of_birth:
-            context["age"] = datetime.date.today().year - model.profile.date_of_birth.year
+            date_of_birth = model.profile.date_of_birth
+            date_of_birth = datetime.combine(date_of_birth, datetime.min.time())
+
+            context["age"] = (datetime.now() - date_of_birth).days // 365
 
         return context
 
