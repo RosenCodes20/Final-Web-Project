@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
+from dateutil.relativedelta import relativedelta
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -84,7 +85,7 @@ class ProfileDetails(LoginRequiredMixin, UserPassesTestMixin, DetailView):
             date_of_birth = model.profile.date_of_birth
             date_of_birth = datetime.combine(date_of_birth, datetime.min.time())
 
-            context["age"] = (datetime.now() - date_of_birth).days // 365
+            context["age"] = relativedelta(datetime.now(), date_of_birth).years
 
         return context
 
