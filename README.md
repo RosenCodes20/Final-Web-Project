@@ -104,7 +104,8 @@ Try it all have fun and feel how it is to be a coach :)
 
 ### Example for user so you can try it.
 
-email: roko@gmail.com
+Email: roko@gmail.com
+
 password: 12admin34
 
 # And last but not least ENJOY 😎😁
