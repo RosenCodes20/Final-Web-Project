@@ -142,5 +142,9 @@
     .players-container .player-card .btn-group button {
         margin-bottom: 5px;
     }
+
+    .players-container .player-card .btn-group {
+        text-decoration: none;
+    }
 }
 
